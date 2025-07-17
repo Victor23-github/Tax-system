@@ -1,18 +1,30 @@
 import Login from './form/login';
 import { Form } from './form/signUp';
 import Hero from './pages/Hero';
+import UserDashboard from './pages/userDashboard';
+import { createBrowserRouter, RouterProvider } from 'react-router';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Hero />,
+  },
+  {
+    path: '/login',
+    element: <Login />,
+  },
+  {
+    path: '/signup',
+    element: <Form />,
+  },
+  {
+    path: '/home',
+    element: <UserDashboard />,
+  },
+]);
 
 function App() {
-  return (
-    <div className='App'>
-      {/* <Hero /> */}
-      <h1 className='text-3xl text-center bg-white font-bold mb-4'>
-        Welcome to TaxPayer
-      </h1>
-      <Login />
-      <Form />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

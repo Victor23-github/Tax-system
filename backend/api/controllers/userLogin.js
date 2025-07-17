@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import userModel from '../model/user.js';
+import userModel from '../models/user.js';
 
 async function registerTaxPayer(req, res) {
   try {

@@ -1,10 +1,9 @@
 import express from 'express';
 
-import { registerTaxPayer, taxPayerLogin } from '../controller/userLogin.js';
+import { registerTaxPayer, taxPayerLogin } from '../controllers/userLogin.js';
 
 const router = express.Router();
 
-router.post('/register', registerTaxPayer);
-router.post('/login', taxPayerLogin);
+router.post('/register', registerTaxPayer).post('/login', taxPayerLogin);
 
 export default router;

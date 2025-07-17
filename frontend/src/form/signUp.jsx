@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 
 export function Form() {
   const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage('');
+    setError('');
+    setLoading(true);
     try {
       const response = await fetch('http://localhost:5000/api/register', {
         method: 'POST',
@@ -23,78 +27,100 @@ export function Form() {
       if (response.ok) {
         setMessage('Registration successful!');
       } else {
-        setMessage(data.message || 'Registration failed');
+        setError(data.message || 'Registration failed');
       }
     } catch (error) {
-      setMessage('Error connecting to server');
+      setError('Error connecting to server');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className='flex justify-center items-center h-[90dvh]'>
-      <div className='bg-white p-8 w-shadow-lg rounded-2xl w-86 space-y-4'>
-        <h1 className='text-3xl text-center font-bold mb-4'>Sign Up</h1>
-        <form onSubmit={handleSubmit}>
-          <div className='mb-3 flex flex-col gap-1 '>
-            <label htmlFor='firstName'>First Name</label>
+    <div className='flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-200 via-green-100 to-blue-100'>
+      <div className='bg-white p-10 shadow-2xl rounded-3xl w-full max-w-lg space-y-8 border border-blue-100'>
+        <h1 className='text-4xl text-center font-bold mb-6 text-blue-700 drop-shadow-lg'>
+          Create an Account
+        </h1>
+        <form onSubmit={handleSubmit} className='space-y-6'>
+          <div className='flex flex-col gap-2'>
+            <label htmlFor='firstName' className='font-semibold text-blue-700'>
+              First Name
+            </label>
             <input
               type='text'
               name='firstName'
-              className='border-b-2 border-b-blue-500 bg-gray-100 py-2 px-3 focus:outline-none focus:border-b-2 focus:border-b-blue-700'
+              className='border border-blue-300 bg-gray-50 py-3 px-4 rounded-lg focus:outline-none focus:border-blue-700 transition'
               placeholder='John'
               required
             />
           </div>
-          <div className='mb-3 flex flex-col gap-1'>
-            <label htmlFor='lastName'>Last Name</label>
+          <div className='flex flex-col gap-2'>
+            <label htmlFor='lastName' className='font-semibold text-blue-700'>
+              Last Name
+            </label>
             <input
               type='text'
               name='lastName'
-              className='border-b-2 border-b-blue-500 bg-gray-100 py-2 px-3 focus:outline-none focus:border-b-2 focus:border-b-blue-700'
+              className='border border-blue-300 bg-gray-50 py-3 px-4 rounded-lg focus:outline-none focus:border-blue-700 transition'
               placeholder='Doe'
               required
             />
           </div>
-          <div className='mb-3 flex flex-col gap-1'>
-            <label htmlFor='password'>Password</label>
-            <input
-              type='password'
-              name='password'
-              className='border-b-2 border-b-blue-500 bg-gray-100 py-2 px-3 focus:outline-none focus:border-b-2 focus:border-b-blue-700'
-              placeholder='********'
-              required
-            />
-          </div>
-          <div className='mb-3 flex flex-col gap-1'>
-            <label htmlFor='email'>Email</label>
+          <div className='flex flex-col gap-2'>
+            <label htmlFor='email' className='font-semibold text-blue-700'>
+              Email
+            </label>
             <input
               type='email'
               name='email'
-              className='border-b-2 border-b-blue-500 bg-gray-100 py-2 px-3 focus:outline-none focus:border-b-2 focus:border-b-blue-700'
+              className='border border-blue-300 bg-gray-50 py-3 px-4 rounded-lg focus:outline-none focus:border-blue-700 transition'
               placeholder='john@example.com'
               required
             />
           </div>
-          <div className='mb-3 flex gap-1 items-center'>
+          <div className='flex flex-col gap-2'>
+            <label htmlFor='password' className='font-semibold text-blue-700'>
+              Password
+            </label>
+            <input
+              type='password'
+              name='password'
+              className='border border-blue-300 bg-gray-50 py-3 px-4 rounded-lg focus:outline-none focus:border-blue-700 transition'
+              placeholder='********'
+              required
+            />
+          </div>
+          <div className='flex gap-2 items-center'>
             <input
               type='checkbox'
               name='remember'
               id='remember'
               className='accent-blue-600'
             />
-            <span className='text-blue-300 text-center cursor-pointer hover:text-blue-500 transition-colors duration-300'>
+            <label htmlFor='remember' className='text-blue-600 cursor-pointer'>
               Remember me
-            </span>
+            </label>
           </div>
           <button
-            className='border border-blue-600 text-blue-600 font-bold w-full rounded py-1 text-2xl cursor-pointer hover:bg-blue-600 hover:text-white transition-colors duration-300'
+            className={`border border-blue-600 text-blue-600 font-bold w-full rounded-lg py-3 text-2xl cursor-pointer hover:bg-blue-600 hover:text-white transition-colors duration-300 ${
+              loading ? 'opacity-60 cursor-not-allowed' : ''
+            }`}
             type='submit'
+            disabled={loading}
           >
-            Sign Up
+            {loading ? 'Signing Up...' : 'Sign Up'}
           </button>
         </form>
         {message && (
-          <div className='mt-4 text-center text-red-500'>{message}</div>
+          <div className='mt-4 text-center text-green-600 font-semibold'>
+            {message}
+          </div>
+        )}
+        {error && (
+          <div className='mt-4 text-center text-red-500 font-semibold'>
+            {error}
+          </div>
         )}
       </div>
     </div>
