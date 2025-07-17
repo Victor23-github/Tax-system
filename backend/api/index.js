@@ -22,8 +22,8 @@ app.get('/', (req, res) => {
   res.json({ message: 'Hello TaxPayer!' });
 });
 
-// export default app;
+export default app;
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
