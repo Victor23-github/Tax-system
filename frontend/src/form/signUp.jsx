@@ -6,8 +6,6 @@ export function Form() {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-    const url = 'https://tax-system.onrender.com';
-    // || 'http://localhost:5000';
     e.preventDefault();
     setMessage('');
     setError('');
