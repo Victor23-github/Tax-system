@@ -6,12 +6,14 @@ export function Form() {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
+    const url = 'https://tax-system.onrender.com';
+    // || 'http://localhost:5000';
     e.preventDefault();
     setMessage('');
     setError('');
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/register', {
+      const response = await fetch(`${url}/api/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

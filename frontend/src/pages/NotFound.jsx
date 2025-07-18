@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 const NotFound = () => (
   <div className='flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 via-green-100 to-blue-200'>

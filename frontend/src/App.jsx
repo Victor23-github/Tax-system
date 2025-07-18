@@ -1,8 +1,9 @@
+import { createBrowserRouter, RouterProvider } from 'react-router';
 import Login from './form/login';
 import { Form } from './form/signUp';
 import Hero from './pages/Hero';
 import UserDashboard from './pages/userDashboard';
-import { createBrowserRouter, RouterProvider } from 'react-router';
+import NotFound from './pages/NotFound';
 
 const router = createBrowserRouter([
   {
@@ -18,13 +19,13 @@ const router = createBrowserRouter([
     element: <Form />,
   },
   {
-    path: '/home',
+    path: '/dashboard',
     element: <UserDashboard />,
   },
   {
     path: '*',
-    element: <NotFound/>,
-  }
+    element: <NotFound />,
+  },
 ]);
 
 function App() {
