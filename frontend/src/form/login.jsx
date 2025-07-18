@@ -10,7 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    const url = 'http://localhost:5000' || 'https://tax-system.onrender.com';
+    const url = 'https://tax-system.onrender.com';
     e.preventDefault();
     setMessage('');
     setError('');

@@ -12,9 +12,8 @@ app.use(express.urlencoded({ extended: false })); // For parsing application/x-w
 app.use(
   cors({
     origin: [
-      'https://tax-system-project.vercel.app',
+      'https://tax-system-wvnm-victor-akpans-projects-8a98b6d5.vercel.app/',
       'http://localhost:5173',
-      'https://tax-system.onrender.com',
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
