@@ -16,37 +16,37 @@ async function registerTaxPayer(req, res) {
       });
     }
     const { firstName, lastName, password, email } = req.body;
-
-    // user's name
     const username = `${firstName} ${lastName}`;
 
     // check if user already exists
     const exitingUser = await userModel.findOne({ where: { username } });
-
     if (!exitingUser) {
-      const salt = 10;
-      const hashPassword = await bcrypt.hash(password, salt);
-
-      //create new user
-      const newUser = await userModel.create({
-        username,
-        password: hashPassword,
-        email,
-      });
-
-      // generate jwt
-      // const token = jwt.sign(
-      //   { userID: newUser.userID },
-      //   process.env.JWT_SECRET,
-      //   {
-      //     expiresIn: '1h',
-      //   }
-      // );
-
-      res.status(201).json({ message: 'User registration successful' });
+      return res.status(400).json({ message: 'Username already exists' });
     }
+    const salt = 10;
+    const hashPassword = await bcrypt.hash(password, salt);
+
+    //create new user
+    const newUser = await userModel.create({
+      username,
+      password: hashPassword,
+      email,
+    });
+
+    // generate jwt
+    const token = jwt.sign({ userID: newUser.userID }, process.env.JWT_SECRET, {
+      expiresIn: '1h',
+    });
+
+    res.status(201).json({
+      message: 'User registration successful',
+      token,
+    });
   } catch (error) {
     console.error('Error during registration:', error);
+    if (error.name === 'SequelizeValidationError') {
+      return res.status(400).json({ message: error.message });
+    }
     return res.status(500).json({ message: 'Internal server error' });
   }
 }
@@ -54,10 +54,6 @@ async function registerTaxPayer(req, res) {
 async function taxPayerLogin(req, res) {
   try {
     const { email, password } = req.body;
-
-    // hash the password
-    // const saltPassword = 10;
-    // const hashPassword = await bcrypt.hash(password, saltPassword);
 
     // check if user exists
     const user = await userModel.findOne({ where: { email } });
@@ -71,8 +67,14 @@ async function taxPayerLogin(req, res) {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
+    // Generate JWT
+    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
+      expiresIn: '1h',
+    });
+
     res.status(200).json({
       message: 'Login successful',
+      token,
     });
   } catch (error) {
     console.error('Error during login:', error);
