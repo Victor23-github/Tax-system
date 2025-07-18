@@ -11,7 +11,7 @@ app.use(express.json()); // For parsing application/json
 app.use(express.urlencoded({ extended: false })); // For parsing application/x-www-form-urlencoded
 app.use(
   cors({
-    origin: 'https://tax-system-project.vercel.app',
+    origin: 'https://tax-system-project.vercel.app' || 'http://localhost:5173',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
   })
 );
