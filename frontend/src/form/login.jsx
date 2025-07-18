@@ -10,12 +10,13 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+    const url = 'https://tax-system.onrender.com' || 'http://localhost:5000'
     e.preventDefault();
     setMessage('');
     setError('');
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/login', {
+      const response = await fetch(`${url}/api/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
