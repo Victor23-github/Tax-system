@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export function Form() {
+function SignUp() {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -127,3 +127,4 @@ export function Form() {
     </div>
   );
 }
+export default SignUp;
