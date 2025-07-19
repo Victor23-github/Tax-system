@@ -45,7 +45,7 @@ const Navbar = () => {
         <ul className='flex flex-col md:flex-row md:items-center md:gap-6'>
           <li>
             <Link
-              to='/'
+              to='/tax-records'
               className='block px-4 py-2 hover:bg-blue-800'
               onClick={() => setOpen(false)}
             >
