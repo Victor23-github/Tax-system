@@ -11,8 +11,7 @@ app.use(express.json()); // For parsing application/json
 app.use(express.urlencoded({ extended: false })); // For parsing application/x-www-form-urlencoded
 app.use(
   cors({
-    origin:
-      'https://tax-system-wvnm-victor-akpans-projects-8a98b6d5.vercel.app',
+    origin: 'https://tax-system-project.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
   })
