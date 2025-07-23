@@ -1,23 +1,14 @@
-import { createBrowserRouter, RouterProvider } from 'react-router';
-import { Suspense, lazy } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-// Lazy load components with proper imports
-const Login = lazy(() => import('./form/login'));
-const SignUp = lazy(() => import('./form/signUp')); // Fix Form import
-const Hero = lazy(() => import('./pages/Hero'));
-const UserDashboard = lazy(() => import('./pages/userDashboard'));
-const NotFound = lazy(() => import('./pages/NotFound'));
-const TaxRecord = lazy(() => import('./pages/taxRecord'));
+import Hero from './pages/Hero';
+import Login from './form/login';
+import SignUp from './form/signUp';
+import UserDashboard from './pages/userDashboard';
+import NotFound from './pages/NotFound';
+import TaxRecord from './pages/taxRecord';
+import UserLayout from './layouts/userLayouts';
 
-// Loading component
-const Loading = () => (
-  <div className='flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 via-green-100 to-blue-200'>
-    <div className='animate-spin rounded-full h-12 w-12 border-4 border-blue-600 border-t-transparent'></div>
-  </div>
-);
-
-// Route configurations
-const routes = [
+const router = createBrowserRouter([
   {
     path: '/',
     element: <Hero />,
@@ -28,29 +19,22 @@ const routes = [
   },
   {
     path: '/signup',
-    element: <SignUp />, // Use the correctly imported SignUp component
+    element: <SignUp />,
   },
   {
     path: '/dashboard',
-    element: <UserDashboard />,
+    element: <UserLayout />,
+    children: [
+      { index: true, element: <UserDashboard /> },
+      { path: 'tax-records', element: <TaxRecord /> },
+    ],
   },
-  {
-    path: '/tax-records',
-    element: <TaxRecord />,
-  },
+
   {
     path: '*',
     element: <NotFound />,
   },
-];
-
-// Create router with routes
-const router = createBrowserRouter(
-  routes.map((route) => ({
-    ...route,
-    element: <Suspense fallback={<Loading />}>{route.element}</Suspense>,
-  }))
-);
+]);
 
 function App() {
   return <RouterProvider router={router} />;

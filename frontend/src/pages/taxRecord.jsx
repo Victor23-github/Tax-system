@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const mockTaxRecords = [
   {
@@ -48,9 +48,9 @@ const TaxRecord = () => {
   };
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-blue-100 via-green-100 to-blue-200 py-4 px-1'>
+    <div className='min-h-screen bg-gradient-to-br from-green-100 via-green-100 to-green-200 py-4 px-1'>
       <div className='max-w-7xl mx-auto bg-white rounded-3xl shadow-2xl p-3 md:p-10'>
-        <h1 className='text-3xl md:text-4xl font-extrabold text-blue-700 mb-8 text-center'>
+        <h1 className='text-3xl md:text-4xl font-extrabold text-green-700 mb-8 text-center'>
           Tax Records
         </h1>
 
@@ -59,7 +59,7 @@ const TaxRecord = () => {
           <select
             value={selectedYear}
             onChange={(e) => setSelectedYear(e.target.value)}
-            className='p-2 border border-blue-300 rounded-lg focus:outline-none focus:border-blue-500'
+            className='p-2 border border-green-300 rounded-lg focus:outline-none focus:border-green-500'
           >
             <option value='all'>All Years</option>
             <option value='2024'>2024</option>
@@ -71,14 +71,14 @@ const TaxRecord = () => {
             placeholder='Search records...'
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className='p-2 border border-blue-300 rounded-lg focus:outline-none focus:border-blue-500 flex-grow'
+            className='p-2 border border-green-300 rounded-lg focus:outline-none focus:border-green-500 flex-grow'
           />
         </div>
 
         {/* Records Table */}
         <div className='overflow-x-auto'>
           <table className='w-full border-collapse bg-white rounded-lg shadow'>
-            <thead className='bg-blue-600 text-white'>
+            <thead className='bg-green-600 text-white'>
               <tr>
                 <th className='py-3 px-4 text-left'>Year</th>
                 <th className='py-3 px-4 text-left'>Type</th>
@@ -93,7 +93,7 @@ const TaxRecord = () => {
               {filterRecords().map((record) => (
                 <tr
                   key={record.id}
-                  className='border-b border-gray-200 hover:bg-blue-50 transition-colors'
+                  className='border-b border-gray-200 hover:bg-green-50 transition-colors'
                 >
                   <td className='py-3 px-4'>{record.year}</td>
                   <td className='py-3 px-4'>{record.type}</td>
@@ -113,7 +113,7 @@ const TaxRecord = () => {
                   <td className='py-3 px-4'>{record.paymentDate || '-'}</td>
                   <td className='py-3 px-4'>
                     <button
-                      className='text-blue-600 hover:text-blue-800 font-medium'
+                      className='text-green-600 hover:text-green-800 font-medium'
                       onClick={() =>
                         alert(`View details for tax record ${record.id}`)
                       }
@@ -129,9 +129,9 @@ const TaxRecord = () => {
 
         {/* Summary Section */}
         <div className='mt-8 grid grid-cols-1 md:grid-cols-3 gap-4'>
-          <div className='bg-blue-50 p-4 rounded-lg shadow'>
-            <h3 className='font-semibold text-blue-700'>Total Paid</h3>
-            <p className='text-2xl font-bold text-blue-900'>
+          <div className='bg-green-50 p-4 rounded-lg shadow'>
+            <h3 className='font-semibold text-green-700'>Total Paid</h3>
+            <p className='text-2xl font-bold text-green-900'>
               $
               {mockTaxRecords.reduce(
                 (sum, record) =>

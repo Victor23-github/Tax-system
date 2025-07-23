@@ -45,11 +45,29 @@ const Navbar = () => {
         <ul className='flex flex-col md:flex-row md:items-center md:gap-6'>
           <li>
             <Link
-              to='/tax-records'
+              to='/'
               className='block px-4 py-2 hover:bg-blue-800'
               onClick={() => setOpen(false)}
             >
               Home
+            </Link>
+          </li>
+          <li>
+            <Link
+              to='/about'
+              className='block px-4 py-2 hover:bg-blue-800'
+              onClick={() => setOpen(false)}
+            >
+              About
+            </Link>
+          </li>
+          <li>
+            <Link
+              to='/services'
+              className='block px-4 py-2 hover:bg-blue-800'
+              onClick={() => setOpen(false)}
+            >
+              Services
             </Link>
           </li>
           <li>

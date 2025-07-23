@@ -28,18 +28,18 @@ const UserDashboard = () => {
   };
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-blue-100 via-green-100 to-blue-200 py-8 px-2'>
-      <div className='max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl p-6 md:p-10 border border-blue-100'>
-        <h1 className='text-3xl md:text-4xl font-extrabold text-blue-700 mb-6 text-center drop-shadow-lg'>
+    <div className='min-h-screen bg-gradient-to-br from-green-100 via-green-100 to-green-200 py-8 px-2'>
+      <div className='max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl p-6 md:p-10 border border-green-100'>
+        <h1 className='text-3xl md:text-4xl font-extrabold text-green-700 mb-6 text-center drop-shadow-lg'>
           Welcome, {mockUser.firstName}!
         </h1>
         <div className='mb-8 grid grid-cols-1 md:grid-cols-2 gap-8'>
           {/* Profile Section */}
           <div className='flex flex-col'>
-            <h2 className='text-xl md:text-2xl font-bold text-blue-600 mb-2'>
+            <h2 className='text-xl md:text-2xl font-bold text-green-600 mb-2'>
               Profile
             </h2>
-            <div className='bg-blue-50 rounded-lg p-4 shadow space-y-2'>
+            <div className='bg-green-50 rounded-lg p-4 shadow space-y-2'>
               <p>
                 <span className='font-semibold'>Name:</span>{' '}
                 {mockUser.firstName} {mockUser.lastName}
@@ -55,11 +55,11 @@ const UserDashboard = () => {
           </div>
           {/* Tax Summary Section */}
           <div className='flex flex-col'>
-            <h2 className='text-xl md:text-2xl font-bold text-blue-600 mb-2'>
+            <h2 className='text-xl md:text-2xl font-bold text-green-600 mb-2'>
               Tax Summary
             </h2>
             <div className='overflow-x-auto'>
-              <table className='w-full bg-blue-50 rounded-lg shadow text-left'>
+              <table className='w-full bg-green-50 rounded-lg shadow text-left'>
                 <thead>
                   <tr>
                     <th className='py-2 px-4'>Year</th>
@@ -69,7 +69,7 @@ const UserDashboard = () => {
                 </thead>
                 <tbody>
                   {mockTaxes.map((tax) => (
-                    <tr key={tax.year} className='border-t border-blue-100'>
+                    <tr key={tax.year} className='border-t border-green-100'>
                       <td className='py-2 px-4'>{tax.year}</td>
                       <td className='py-2 px-4'>{tax.status}</td>
                       <td className='py-2 px-4'>{tax.refund}</td>
@@ -82,7 +82,7 @@ const UserDashboard = () => {
         </div>
         {/* Notifications Section */}
         <div>
-          <h2 className='text-xl md:text-2xl font-bold text-blue-600 mb-2'>
+          <h2 className='text-xl md:text-2xl font-bold text-green-600 mb-2'>
             Notifications
           </h2>
           <ul className='space-y-3'>
@@ -98,7 +98,7 @@ const UserDashboard = () => {
                 <span className='mb-2 md:mb-0'>{note.message}</span>
                 {!note.read && (
                   <button
-                    className='px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition self-end md:self-auto'
+                    className='px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700 transition self-end md:self-auto'
                     onClick={() => handleMarkRead(note.id)}
                   >
                     Mark as read
