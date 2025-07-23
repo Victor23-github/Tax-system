@@ -27,11 +27,14 @@ function SignUp() {
       const data = await response.json();
       if (response.ok) {
         setMessage('Registration successful!');
+        setTimeout(() => {
+          window.location.href = '/login'; // Redirect to login page after successful registration
+        }, 1000);
       } else {
         setError(data.message || 'Registration failed');
       }
     } catch (error) {
-      setError('Error connecting to server');
+      setError(error.message || 'Error connecting to server');
     } finally {
       setLoading(false);
     }

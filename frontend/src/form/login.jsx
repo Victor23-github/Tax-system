@@ -27,7 +27,7 @@ const Login = () => {
       if (response.ok) {
         setMessage('Login successful!');
         setTimeout(() => {
-          navigate('/home');
+          navigate('/dashboard');
         }, 1000);
       } else {
         setError(data.message || 'Login failed');
