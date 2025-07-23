@@ -33,7 +33,7 @@ const Login = () => {
         setError(data.message || 'Login failed');
       }
     } catch (error) {
-      setError('Error connecting to server');
+      setError(error.message || 'Error connecting to server');
     } finally {
       setLoading(false);
     }
